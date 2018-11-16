@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  // 快排
+var quickSort = function(arr){
+  if(arr.length <= 1){
+    return arr;
+  }
+  var left = [];
+  var right = [];
+  // 获取pivot的下标
+  var pivotIndex = Math.floor(arr.length / 2);
+  // 通过下标将pivot切割出来
+  var pivot = arr.splice(pivotIndex,1)[0];
+  // 循环原数组，将小于pivot的放置到left，大于pivot放置到right
+  for(var i = 0;i<arr.length;i++){
+    if(arr[i]<pivot){
+      left.push(arr[i]);
+    }else{
+      right.push(arr[i]);
+    }
+  }
+  return quickSort(left).concat(pivot,quickSort(right));
+}
+var arr = [5,4,3,2,1];
+console.log(quickSort(arr));
+</script>
+</body>
+</html>
