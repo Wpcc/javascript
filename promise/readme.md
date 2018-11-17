@@ -3,8 +3,11 @@ promise很容易理解，主要分两个部分。
 - 第一个部分创建一个promise对象，该对象有两个参数，为回调函数，分别是resolve和reject。
   + 将异步操作放入promise对象当中，promise对象会立即执行内部代码。
   + 异步操作的正确处理结果传入到resolve回调函数，而错误处理结果传入到reject
-- 第二个部分为调用部分，调用then方法，该方法有的两个函数分别对应resolve和reject。
-  + 如果then方法中resolve的返回值是promise对象，链式调用下的then便是promise对象的resolve方法。
+- 第二个部分为调用部分
+  - 调用then方法，该方法有的两个函数分别对应resolve和reject。
+    - 如果then方法中resolve的返回值是promise对象，链式调用下的then便是promise对象的resolve方法。
+    - 如果不是promise对象，那么链式调用下传入then中的resolve参数便是该数值。
+  - 同样的不通过then，而通过catch方法也可以拿到传入reject中的参数。
 
 以下代码对promise的第一部分进行了封装(node.js)：
 ```javascript
@@ -112,4 +115,4 @@ readFile('example1.txt').then(function(data){
   console.log(data);
 })
 ```
-### 3.0.目录介绍
+### 3.0.实例
