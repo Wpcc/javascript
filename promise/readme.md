@@ -115,4 +115,18 @@ readFile('example1.txt').then(function(data){
   console.log(data);
 })
 ```
-### 3.0.实例
+### 3.0.jQuery中的promise
+
+```
+//jquery中promise的链式调用
+$.get(url)
+	.then(function(data){
+        //代码
+        return $.get(url)
+	})
+	.then(function(data){
+        //代码
+        return $.get(url)
+	})
+```
+
