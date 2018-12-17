@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+  //创建一个观察者
+  var Observer = (function(){
+    //消息容器
+    var __messages = {}
+    return {
+      // 添加消息
+      regist(type, fn){
+        //如果消息容器中没有该注册消息,则加入该注册消息，值得注意地是该注册消息为数组
+        if(typeof __messages[type] === 'undefined'){
+          __messages[type] = [fn]
+        }else{
+          __messages[type].push(fn)
+        }
+      },
+      //发布消息
+      fire(type,args){
+        //如果消息容器中没有该消息
+        if(!__messages[type]){
+          return
+        }
+        var events = {
+          type:type,
+          args:args || {}
+        },
+        i = 0
+        len = __messages[type].length
+        for(; i < len; i++){
+          __messages[type][i](events)
+        }
+      },
+      //移除消息
+      remove(){
+        //如果消息队列存在
+        if(__messages[type] instanceof Array){
+          var i = __messages[type].length - 1
+          for(; i >= 0; i--){
+            __messages[type][i] === fn && __messages[type].splice(i, 1)
+          }
+        }
+      }
+    }
+  })()
+   // 订阅消息
+  Observer.regist('test', function(e){
+    console.log(e.type, e.args.msg)
+  })
+  // 发布消息
+  Observer.fire('test', {msg : '传递参数'})
+</script>
+</html>

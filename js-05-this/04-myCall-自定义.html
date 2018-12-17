@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+   这种方法，无法处理undefined。
+  */
+  Function.prototype.myCall = function(context) {
+    context.fn = this;
+    var args = [];
+    for(var i = 1, len = arguments.length; i < len; i++) {
+        args.push(arguments[i]);
+    }
+    // args[undefined]
+    context.fn(args.join()) // undefined转换成字符串是空
+    delete context.fn;
+  }
+
+
+  var cat={
+    food:'fish',
+    say(type){
+      console.log(type + 'like' + this.food)
+    }
+  }
+  var dog={
+    food:'bone'
+  }
+  cat.say.call(dog)
+  cat.say.myCall(dog)
+</script>
+</html>

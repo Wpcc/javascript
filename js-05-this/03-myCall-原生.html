@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  /*
+   call 的封装:call会改变this的执向，并且
+  */
+  Function.prototype.myCall = function(context) {
+    // 1.0 通过this将调用方法如以下的say 赋值给第一个参数context即以下的dog对象
+    context.fn = this;
+
+    // 2.0 剔除该对象的第一个参数
+    var args = [];
+    for(var i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[i]');
+    }
+    // 3.0 执行函数 假设有三个参数，那么args数组中的值 args=[arguments[1],arguments[2],arguments[3]]
+    eval('context.fn('+args+')')
+    /*
+      3.1 当涉及到字符串数组拼接时，会自动调用数组的toString()方法
+          故以上代码实际会转换成： eval('context.fn(argument[1],arguments[2],arguments[3])')
+    */
+    delete context.fn;
+    // 4.0 初始化即删除对象方法
+  }
+
+
+  var cat={
+    food:'fish',
+    say(type){
+      console.log(type + 'like' + this.food)
+    }
+  }
+  var dog={
+    food:'bone'
+  }
+  cat.say.call(dog)
+  cat.say.myCall(dog)
+</script>
+</html>

@@ -1,0 +1,13 @@
+/*
+less中没有循环语法
+extract是提取对应索引的内容
+*/
+
+.adapterMixin(@len) when (@len > 0){
+  @media (min-width: extract(@adapterList,@len)){
+    html{
+      font-size: @baseFontSize * (extract(@adapterList,@len)/@psdWidth)
+    }
+  }
+  .adapterMixin(@len - 1);
+}
