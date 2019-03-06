@@ -10,12 +10,12 @@
 
 </body>
 <script>
-// 字符串和数组拼接，会隐形地将数组转换成字符串  toString（）
-var a = ['hello','world']
-function say(){
-  console.log(arguments)
-}
-say(a);
-eval('say('+a+')')  // eval(say(hello,world))
+  let firstName = Symbol()
+  var obj = {
+    firstName : 'wpc',
+    [firstName] : 'll'
+  }
+  console.log(obj[firstName])
+  console.log(obj.firstName)
 </script>
 </html>

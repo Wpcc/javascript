@@ -10,12 +10,9 @@
 
 </body>
 <script>
-// 字符串和数组拼接，会隐形地将数组转换成字符串  toString（）
-var a = ['hello','world']
-function say(){
-  console.log(arguments)
-}
-say(a);
-eval('say('+a+')')  // eval(say(hello,world))
+  var text = 'mom and dad and baby'
+  var pattern = /mom( and dad( and baby)?)?/gi
+  var matches = pattern.exec(text)
+  console.log(matches)
 </script>
 </html>

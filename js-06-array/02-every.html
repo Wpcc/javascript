@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  Array.prototype.myEvery = function(callback){
+    for(var i=0;i<this.length;i++){
+      if(!callback(this[i],i,this)){
+        return false
+      }
+    }
+    return true
+  }
+  var arr = [1,2,3]
+  var result = arr.some(function(item){
+    return item > 2
+  })
+  var result2 = arr.mySome(function(item){
+    return item > 2
+  })
+  console.log(result)
+</script>
+</html>

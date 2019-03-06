@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  Array.prototype.myFindIndex = function(callback){
+    for(var i=0;i<this.length;i++){
+      if(callback(this[i],i,this)){
+        return i
+      }
+    }
+  }
+  var arr = [10,20,30]
+  var result01 = arr.findIndex(function(item){
+    return item == 20
+  })
+  var result02 = arr.findIndex(function(item){
+    return item == 20
+  })
+  console.log(result01)
+  console.log(result02)
+</script>
+</html>

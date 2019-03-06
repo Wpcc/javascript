@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/zepto.js"></script>
+  <script src="./lib/touch.js"></script>
+  <style>
+    html,body{
+      width:100%;
+      height:100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    div{
+      width:50%;
+      height:50%;
+      background:#ccc;
+    }
+  </style>
+</head>
+<body>
+<div>
+
+</div>
+</body>
+<script>
+  // 点透事件应该和事件冒泡有关
+  $('div').tap(function(e){
+    $(this).hide()
+    e.stopPropagation()
+  })
+  $('body').tap(function(){
+    console.log('hello')
+  })
+</script>
+</html>

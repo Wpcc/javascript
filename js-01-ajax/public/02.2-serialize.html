@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/jquery.min.js"></script>
+</head>
+<body>
+<div>this is serialize</div>
+<form>
+  <label>
+    姓名：
+    <input type="text" name="name">
+  </label>
+  <label>
+    年龄：
+    <input type="text" name="age">
+  </label>
+</form>
+<input type="button" value="提交">
+<h3></h3>
+</body>
+<script>
+  $('input[type="button"]').on('click',function(){
+    var data = $('form').serialize()
+    $.ajax({
+      type:'post',
+      url:'http://127.0.0.1:3000/serialize',
+      data:data,
+      dataType:'json',
+      success:function(data){
+        $('h3').html(JSON.stringify(data))
+      }
+    })
+  })
+</script>
+</html>

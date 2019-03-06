@@ -13,22 +13,16 @@
   /*
    call 的封装:call会改变this的执向，并且
   */
-  Function.prototype.myApply = function(context) {
-    context = context || window
+  Function.prototype.myCall = function(context) {
+    // context = context || window
     // 1.0 通过this将调用方法如以下的say 赋值给第一个参数context即以下的dog对象
     context.fn = this;
 
     // 2.0 剔除该对象的第一个参数
-    var args
-    if(!arguments[1]){
-      args = undefined
-    }else{
-      args = []
-      for(var i=0;i<arguments[1].length;i++){
-        args.push('arguments[i]['+i+']')
-      }
+    var args = [];
+    for(var i = 1, len = arguments.length; i < len; i++) {
+        args.push('arguments[i]');
     }
-    console.log(args)
     // 3.0 执行函数 假设有三个参数，那么args数组中的值 args=[arguments[1],arguments[2],arguments[3]]
     eval('context.fn('+args+')')
     /*
@@ -39,7 +33,7 @@
     // 4.0 初始化即删除对象方法
   }
 
- var food = 'window'
+
   var cat={
     food:'fish',
     say(type){
@@ -49,7 +43,7 @@
   var dog={
     food:'bone'
   }
-  cat.say.apply(dog)
-  cat.say.myApply(dog)
+  cat.say.call()
+  cat.say.myCall()
 </script>
 </html>

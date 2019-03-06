@@ -5,17 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    span{
+      margin:10px;
+      padding:10px;
+    }
+  </style>
 </head>
 <body>
-
+<span>hello</span>world
 </body>
-<script>
-// 字符串和数组拼接，会隐形地将数组转换成字符串  toString（）
-var a = ['hello','world']
-function say(){
-  console.log(arguments)
-}
-say(a);
-eval('say('+a+')')  // eval(say(hello,world))
-</script>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+</body>
+<script>
+/*
+  业务场景:给container容器添加5000个p标签
+  以下代码：
+    会重复的访问DOM节点，
+    会重复的导致回流或重绘
+  时间戳的单位为毫秒。
+*/
+var start = Date.now()
+var oC = document.querySelector('#container')
+var content
+for(var count=0;count<5000;count++){
+  content += '<p>hello world</p>'
+}
+oC.innerHTML = content
+console.log(Date.now() - start)
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  Array.prototype.myForEach = function(callback){
+    for(var i=0;i<this.length;i++){
+      callback(this[i],i,this)
+    }
+  }
+  var arr = [1,2,3]
+  var result01 = [],result02 = []
+  arr.forEach(function(item){
+    result01.push(item + 1)
+  })
+  arr.myForEach(function(item){
+    result02.push(item + 1)
+  })
+  console.log(result01)
+  console.log(result02)
+</script>
+</html>

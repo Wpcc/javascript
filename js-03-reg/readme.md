@@ -8,7 +8,7 @@
 
 
 
-### 1.0.js中的正则
+### js中的正则
 
 你可以通过字面量或者构造函数的方法去构建正则表达式：
 
@@ -24,7 +24,7 @@ var reg = /\bis\b/; //b(word boundary):字符边界
 var reg = new RegExp('\\bis\\b');  //反斜杠需要转义
 ```
 
-### 1.1.基础知识：
+### 基础知识
 
 正则表达式由一些**普通字符**和一些**元字符**组成。普通字符包括大小写的字母和数字，而元字符则具有特殊的含义。
 
@@ -45,7 +45,7 @@ var reg = new RegExp('\\bis\\b');  //反斜杠需要转义
   - ^ ：匹配输入字行首。如果设置了RegExp对象的Multiline属性，^也匹配"\n"或"\r"之后的位置。
   - $：匹配输入行尾。如果设置了RegExp对象的Multiline属性，$也匹配"\n"或"\r"之前的位置。
 
-### 1.2.详解
+### 详解
 
 范围类：
 
@@ -54,7 +54,7 @@ var reg = new RegExp('\\bis\\b');  //反斜杠需要转义
 
 预定义类：
 
-- .	 \[^\r\n]	除了回车符合换行符之外的所有字符
+- .	 \[^\r\n]	除了回车符和换行符之外的所有字符
 - \d     [0-9]    数字字符
 - \D    \[^0-9]    非数字字符
 - \s    [\t\n\x0B\f\r]    空白符
@@ -80,7 +80,32 @@ var reg = new RegExp('\\bis\\b');  //反斜杠需要转义
 
 
 
-### 1.3.贪婪和非贪婪
+### 方法
+
+RegExp对象主要提供两个方法，一个是`exec()`另一个是`test()`。
+
+当然字符串中的`match()`、`replace()`方法参数可以传入一个正则表达式。
+
+```javascript
+// exec()方法匹配会返回一个数组，没匹配则返回null
+var text = 'mom and dad and baby'
+var pattern = /mom( and dad( and baby)?)?/gi
+var matches = pattern.exec(text)
+console.log(matches)  //该方法较少用
+```
+
+```javascript
+// test()方法会返回布尔值
+var text = '000-00-0000'
+var pattern = /\d{3}-\d{2}-\d{4}/
+if(pattern.test(text)){
+    console.log('The pattern was matched')
+}
+```
+
+
+
+### 贪婪和非贪婪
 
 正则在进行量词匹配的时候，会尽可能多的匹配，我们称这种模式为贪婪模式。
 
@@ -114,7 +139,7 @@ console.log(str1);
 //输出结果 Xhello world</h1>            
 ```
 
-### 1.4.前瞻
+### 前瞻
 
 - 正则表达式从文本头部向尾部开始解析，文本尾部方向称为“前”。
 - 前瞻就是在正则表达式匹配到规则的时候，向前检查是否符合断言，后顾、后瞻方向相反。
@@ -134,7 +159,7 @@ console.log(str1);
 // 输出 X2*3
 ```
 
-### 1.5.实际用途
+### 实际用途
 
 **手机号码：**
 

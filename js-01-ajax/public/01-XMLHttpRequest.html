@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>01-XMLHttpRequest</div>
+  <button>点击</button>
+  <h3></h3>
+</body>
+<script>
+ var oBtn = document.querySelector('button')
+ oBtn.addEventListener('click',function(){
+   /*
+     open(method,url,async)
+     send(string)
+   */
+   var xhr = new XMLHttpRequest();
+   xhr.onreadystatechange = function(){
+     if(xhr.readyState == 4 && xhr.status == 200){
+       console.log(xhr.responseText)
+       document.querySelector('h3').innerHTML = xhr.responseText
+     }
+   }
+   xhr.open('get','http://127.0.0.1:3000/original'); // 方式，url地址，
+   xhr.send()
+ })
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  Array.prototype.mySlice = function(){
+    var start = arguments[0] || 0
+    var end = arguments[1] || this.length
+    var temp = []
+    for(var i=start;i<end;i++){
+      temp.push(this[i])
+    }
+    return temp
+  }
+  var fakeArr = {
+    0:'hello',
+    1:'world',
+    length:2
+  }
+  var arr = Array.prototype.mySlice.call(fakeArr)
+  console.log(arr)
+</script>
+</html>
