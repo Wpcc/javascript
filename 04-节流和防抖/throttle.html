@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>hello</div>
+</body>
+<script>
+
+function throttle (fn, interval) {
+  // last为上一次触发回调的时间
+  let last = 0
+
+  return function () {
+    let context = this
+    let args = arguments
+    let now = +new Date() // 转时间戳
+
+    if (now - last >= interval) {
+      last = now
+      // fn.apply(context, args)
+      fn()
+    }
+  }
+}
+
+const better_scroll = throttle(() => console.log('触发了滚动事件'), 2000)
+
+document.addEventListener('click', better_scroll)
+</script>
+</html>
