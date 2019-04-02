@@ -16,8 +16,6 @@ function throttle (fn, interval) {
   let last = 0
 
   return function () {
-    let context = this
-    let args = arguments
     let now = +new Date() // 转时间戳
 
     if (now - last >= interval) {
