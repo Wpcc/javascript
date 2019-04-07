@@ -21,7 +21,7 @@
     // 2.0 剔除该对象的第一个参数
     var args = [];
     for(var i = 1, len = arguments.length; i < len; i++) {
-        args.push('arguments[i]');
+        args.push('arguments[' + i + ']');
     }
     // 3.0 执行函数 假设有三个参数，那么args数组中的值 args=[arguments[1],arguments[2],arguments[3]]
     eval('context.fn('+args+')')
@@ -43,7 +43,7 @@
   var dog={
     food:'bone'
   }
-  cat.say.call()
-  cat.say.myCall()
+  cat.say.call(dog, 'dog')
+  cat.say.myCall(dog, 'dog')
 </script>
 </html>

@@ -15,22 +15,29 @@
   */
   Function.prototype.myCall = function(context) {
     context = context || window
-    // 1.0 通过this将调用方法如以下的say 赋值给第一个参数context即以下的dog对象
+    /*
+     1.0 通过this将调用方法如以下的say 赋值给第一个参数context即以下的dog对象,
+         cat.say.myCall 即 this指向cat.say
+    */
     context.fn = this;
 
     // 2.0 剔除该对象的第一个参数
     var args = [];
+    console.log('arg:' + arguments[1])
     for(var i = 1, len = arguments.length; i < len; i++) {
-        args.push('arguments[i]');
+        args.push("arguments[" + i + "]"); 
+        // 为什么不直接传入 arguments[i] ,这是因为eval会执行内部的字符串。
+        // 如果传入的是arguments[i],即为dog字符串，会直接使用dog对象的值。
     }
+    console.log('args:' + args)
     // 3.0 执行函数 假设有三个参数，那么args数组中的值 args=[arguments[1],arguments[2],arguments[3]]
-    eval('context.fn('+args+')')
+    eval('context.fn(' + args + ')')
     /*
       3.1 当涉及到字符串数组拼接时，会自动调用数组的toString()方法
           故以上代码实际会转换成： eval('context.fn(argument[1],arguments[2],arguments[3])')
     */
     delete context.fn;
-    // 4.0 初始化即删除对象方法
+    // 4.0 初始化 即删除对象方法
   }
 
 
@@ -43,7 +50,7 @@
   var dog={
     food:'bone'
   }
-  cat.say.call()
-  cat.say.myCall()
+  cat.say.call(dog,'dog')
+  cat.say.myCall(dog,'dog')
 </script>
 </html>
